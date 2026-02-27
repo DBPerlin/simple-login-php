@@ -2,15 +2,15 @@
 
 session_start();
 
-$rotas_permitidas = require_once __DIR__ . '/../inc/rotas-php'; 
+$rotas_permitidas = require_once __DIR__ . '/../inc/rotas.php'; 
 
 $rota = $_GET['rota'] ?? 'home';
 
-if(!isset($_SESSION['usuario'])){
+if(!isset($_SESSION['usuario']) && $rota !== 'login_submit'){
     $rota = 'login';
 }
 
-if(isset($_SESSION['usuario'] && $rota == 'login')){
+if(isset($_SESSION['usuario']) && $rota === 'login'){
     $rota = 'home';
 }
 
@@ -36,6 +36,9 @@ switch ($rota) {
         $script = 'home.php';
         break;
 }
+
+require_once __DIR__ . "/../inc/config.php";
+require_once __DIR__ . "/../inc/database.php";
 
 require_once __DIR__ . "/../inc/header.php";
 require_once __DIR__ . "/../scripts/$script";

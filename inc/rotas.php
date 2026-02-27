@@ -5,7 +5,7 @@ return [
     'home',
     'login',
     'login_submit',
-    'logout'
+    'logout',
 
     'page1',
     'page2',
